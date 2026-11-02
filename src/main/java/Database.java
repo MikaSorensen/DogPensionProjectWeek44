@@ -51,13 +51,15 @@ public class Database {
                     fldDogAge TINYINT,
                     fldDogBreed VARCHAR(50),
                     fldDogSpecialNeeds VARCHAR(1000),
-                    fldDogPrefferedVet TINYINT,
+                    fldDogPreferredVet TINYINT,
                     fldDogWeight TINYINT,
                     fldDogPensionDuration TINYINT,
                     fldIsDogVaccinated BOOLEAN,
                     fldIsDogTreatedForFleas BOOLEAN,
                     fldIsDogInsured BOOLEAN,
                     fldDogFoodTypeID INTEGER,
+                    fldFeedAmount DOUBLE,
+                    fldDailyFeedTimes INTEGER,
                     fldOwnerID INTEGER,
 
                     FOREIGN KEY (fldDogFoodTypeID)
