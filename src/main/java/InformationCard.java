@@ -18,6 +18,9 @@ public class InformationCard {
     public String dogOwnerPhoneNo;
     public int dogID;
     public Database db;
+    int dogWeight;
+    double dogFeedAmount;
+    int dogDailyFeedTimes;
 
     /*
     constructor for the information card, takes the database and dogID for the given card
@@ -35,12 +38,15 @@ public class InformationCard {
         this.dogAge = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogAge", dogID, "fldDogID").getFirst().toString());
         this.dogBreed = db.getDataWhereDataIs("tblDog", "fldDogBreed", dogID, "fldDogID").getFirst().toString();
         this.dogSpecialNeeds = db.getDataWhereDataIs("tblDog", "fldDogSpecialNeeds", dogID, "fldDogID").getFirst().toString();
-        this.dogPrefferedVet = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogPrefferedVet", dogID, "fldDogID").getFirst().toString());
+        this.dogPrefferedVet = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogPreferredVet", dogID, "fldDogID").getFirst().toString());
+        this.dogWeight = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogWeight", dogID, "fldDogID").getFirst().toString());
         this.dogPensionDuration = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogPensionDuration", dogID, "fldDogID").getFirst().toString());
         this.dogVaccination = Boolean.parseBoolean(db.getDataWhereDataIs("tblDog", "fldIsDogVaccinated", dogID, "fldDogID").getFirst().toString());
         this.dogFleas = Boolean.parseBoolean(db.getDataWhereDataIs("tblDog", "fldIsDogTreatedForFleas", dogID, "fldDogID").getFirst().toString());
         this.dogInsured = Boolean.parseBoolean(db.getDataWhereDataIs("tblDog", "fldIsDogInsured", dogID, "fldDogID").getFirst().toString());
         this.dogFoodTypeID = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDogFoodTypeID", dogID, "fldDogID").getFirst().toString());
+        this.dogFeedAmount = Double.parseDouble(db.getDataWhereDataIs("tblDog", "fldFeedAmount", dogID, "fldDogID").getFirst().toString());
+        this.dogDailyFeedTimes = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldDailyFeedTimes", dogID, "fldDogID").getFirst().toString());
         this.dogOwnerID = Integer.parseInt(db.getDataWhereDataIs("tblDog", "fldOwnerID", dogID, "fldDogID").getFirst().toString());
         this.dogOwnerName = db.getDataWhereDataIs("tblOwner", "fldOwnerName", dogOwnerID, "fldOwnerID").getFirst().toString();
         this.dogOwnerPhoneNo = db.getDataWhereDataIs("tblOwner", "fldOwnerPhoneNo", dogOwnerID, "fldOwnerID").getFirst().toString();

@@ -107,4 +107,23 @@ public class IncidentLog {
 
         db.insertData("tblFeeding", columns, data);
     }
+
+    public int getFeedingCount()
+    {
+        updateIncidentLog();
+
+        int count = 0;
+
+        for (int i = 0; i < feedingDateTimes.size(); i++)
+        {
+            Timestamp feedingTime = (Timestamp) feedingDateTimes.get(i);
+
+            if (feedingTime.toLocalDateTime().toLocalDate().equals(LocalDateTime.now().toLocalDate()))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }

@@ -2,6 +2,7 @@
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Database {
@@ -17,6 +18,7 @@ public class Database {
     public Database() {
         connect();
         createTables();
+        insertFoodTypes();
     }
 
     /*
@@ -183,6 +185,38 @@ public class Database {
             handle.execute("DELETE FROM tblOwner");
             handle.execute("DELETE FROM tblDog");
             handle.execute("DELETE FROM tblFoodType");
+        });
+    }
+
+    public void insertFoodTypes() {
+        jdbi.useHandle(handle -> {
+
+            ArrayList<String> foodTypes = new ArrayList<>(Arrays.asList(
+                    "Standard Dry feed",
+                    "Dry Feed for Young Dogs",
+                    "Dry Feed For Old Dogs",
+                    "Luxury Food",
+                    "Diet Food"
+            ));
+
+            for (int i = 0; i < foodTypes.size(); i++) {
+
+                int id = i + 1;
+
+                int count = handle.createQuery(
+                                "SELECT COUNT(*) FROM tblFoodType WHERE fldFoodTypeID = :id"
+                        )
+                        .bind("id", id)
+                        .mapTo(Integer.class)
+                        .one();
+
+                if (count == 0) {
+                    handle.execute(
+                            "INSERT INTO tblFoodType (fldFoodTypeID, fldFoodTypeName) VALUES (?, ?)",
+                            id, foodTypes.get(i)
+                    );
+                }
+            }
         });
     }
 }
